@@ -26,3 +26,21 @@ export async function deleteAction({params}){
     })
     return redirect('/')
 }
+
+export async function editAction({request, params}){
+    const formData = await request.formData()
+    const newDog = {
+        name : formData.get('name'),
+        age : formData.get('age'),
+        color : formData.get('color'),
+        picture : formData.get('picture')
+    }
+    await fetch(URL + params.id, {
+        method: 'put',
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(newDog)
+    })
+    return redirect('/')
+}

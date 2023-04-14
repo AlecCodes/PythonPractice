@@ -1,9 +1,12 @@
-import { useLoaderData, Form} from "react-router-dom"
+import { useLoaderData, Form, Link} from "react-router-dom"
 
 function Show(props) {
     const data = useLoaderData();
     return (
     <div>
+        <Link to={`../edit/${data._id}`}>
+        Edit!
+        </Link>
         <Form action={`../deleteAction/${data._id}`} method='post'> 
             <input type='submit' value='delete'/>
         </Form>
